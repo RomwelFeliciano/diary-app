@@ -1,8 +1,14 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const Notes = require("./models/notesModel");
+const notesRoute = require("./routes/notesRoute");
 
 const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(notesRoute);
 
 // Routes
 app.get("/", (req, res) => {
