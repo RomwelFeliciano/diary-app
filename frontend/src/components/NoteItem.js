@@ -7,6 +7,7 @@ const NoteItem = () => {
         <h1 className="text-lg font-bold">Today's Weather</h1>
         <h2 className="text-md font-bold">January 19, 2024</h2>
       </div>
+      <hr className="mb-3 border-neutral-900" />
       <p className="text-justify text-sm leading-6 tracking-wide">
         &nbsp;&nbsp;&nbsp;&nbsp; If you’re hungry for joy and low on creativity,
         these short inspiring messages are for you. If you know you need more
