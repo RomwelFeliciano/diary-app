@@ -8,7 +8,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(notesRoute);
+app.use("/api/notes", notesRoute);
 
 // Routes
 app.get("/", (req, res) => {
