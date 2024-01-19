@@ -11,4 +11,6 @@
 - npm i mongodb
 - npm i mongoose
 
-# Third Step
+# FRONTEND
+
+- npm i concurrently
