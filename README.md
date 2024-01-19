@@ -14,3 +14,4 @@
 # FRONTEND
 
 - npm i concurrently
+- npm i react-toastify

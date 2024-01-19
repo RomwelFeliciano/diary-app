@@ -2,7 +2,7 @@ import React from "react";
 
 const NoteItem = () => {
   return (
-    <div className="w-96 h-96 p-4 bg-sky-500 rounded-lg">
+    <div className="w-96 h-96 p-4 bg-green-300 rounded-lg">
       <div className="flex justify-between items-center pb-3">
         <h1 className="text-lg font-bold">Today's Weather</h1>
         <h2 className="text-md font-bold">January 19, 2024</h2>

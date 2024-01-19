@@ -7,13 +7,6 @@ const NoteContainer = () => {
       <NoteItem />
       <NoteItem />
       <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
     </div>
   );
 };
