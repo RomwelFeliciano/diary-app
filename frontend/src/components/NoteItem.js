@@ -2,12 +2,12 @@ import React from "react";
 
 const NoteItem = () => {
   return (
-    <div className="w-96 h-96 p-4 bg-green-300 rounded-lg">
-      <div className="flex justify-between items-center pb-3">
+    <div className="h-96 w-96 rounded-lg bg-green-300 p-4">
+      <div className="flex items-center justify-between pb-3">
         <h1 className="text-lg font-bold">Today's Weather</h1>
         <h2 className="text-md font-bold">January 19, 2024</h2>
       </div>
-      <p className="text-sm text-justify leading-6 tracking-wide">
+      <p className="text-justify text-sm leading-6 tracking-wide">
         &nbsp;&nbsp;&nbsp;&nbsp; If you’re hungry for joy and low on creativity,
         these short inspiring messages are for you. If you know you need more
         support... like, daily... get my book Morning Affirmations for 200

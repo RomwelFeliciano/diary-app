@@ -2,7 +2,7 @@ import NoteItem from "./NoteItem";
 
 const NoteContainer = () => {
   return (
-    <div className="w-full h-full flex flex-wrap justify-center items-center gap-10">
+    <div className="flex h-full w-full flex-wrap items-center justify-center gap-10">
       <NoteItem />
       <NoteItem />
       <NoteItem />

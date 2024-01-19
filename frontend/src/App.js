@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="App min-h-screen">
       <Navbar />
-      <main className="w-full h-full relative min-h-screen flex flex-col justify-start items-center pt-32 px-20">
+      <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-20 pt-32">
         <ToastContainer />
         <NoteContainer />
-        <button className="w-12 h-12 fixed bottom-5 right-5 bg-green-400 hover:bg-green-600 transition-all duration-300 ease-in-out rounded-full flex justify-center items-center text-3xl font-bold pb-2 m-0">
+        <button className="fixed bottom-5 right-5 m-0 flex h-12 w-12 items-center justify-center rounded-full bg-green-400 pb-2 text-3xl font-bold transition-all duration-300 ease-in-out hover:bg-green-600">
           +
         </button>
       </main>
