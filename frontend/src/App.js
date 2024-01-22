@@ -137,6 +137,7 @@ function App() {
       await axios.delete(`${URL}/api/notes/${id}`);
       // console.log(data);
       getNotes();
+      toast.warn("Note has been Deleted");
     } catch (error) {
       toast.error(error.message);
       console.log(error);
@@ -147,7 +148,7 @@ function App() {
     <div className="App min-h-screen">
       <Navbar />
       <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-20 py-32">
-        <ToastContainer />
+        <ToastContainer position="top-center" autoClose={3000} />
         {isLoading === true ? (
           <div className="fixed flex h-96 items-center justify-center">
             <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-blue-400 ease-linear"></div>
