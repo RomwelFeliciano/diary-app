@@ -15,3 +15,5 @@
 
 - npm i concurrently
 - npm i react-toastify
+- npm install axios
+- npm i cors

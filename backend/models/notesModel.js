@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const notesSchema = mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: [true, "Cannot leave empty"],
     },
