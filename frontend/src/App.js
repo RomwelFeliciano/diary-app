@@ -12,6 +12,8 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isViewing, setIsViewing] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [noteID, setNoteID] = useState("");
   const [formData, setFormData] = useState({
@@ -23,6 +25,8 @@ function App() {
   // Show Modal
   const handleShowForm = () => {
     setShowForm(true);
+    setIsCreating(true);
+    setIsViewing(false);
   };
 
   // Close Modal
@@ -44,8 +48,8 @@ function App() {
   // Handle Create Note
   const createNote = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
+    console.log(formData);
     if (title === "" || message === "") {
       return toast.error("Please add a title and message to the input");
     }
@@ -83,32 +87,31 @@ function App() {
     }
   };
 
-  // Re-redner when there are notes
+  // Re-render when there are notes
   useEffect(() => {
     getNotes();
   }, []);
 
-  // Delete Data
-  const deleteNote = async (id) => {
-    try {
-      const { data } = await axios.delete(`${URL}/api/notes/${id}`);
-      // console.log(data);
-      getNotes();
-    } catch (error) {
-      toast.error(error.message);
-      console.log(error);
-    }
+  // Handle View Note
+  const viewNote = async (note) => {
+    setFormData({ title: note.title, message: note.message });
+    setNoteID(note._id);
+    setShowForm(true);
+    setIsCreating(false);
+    setIsViewing(true);
+    setIsEditing(false);
   };
 
-  // Get Single Note
+  // Handle Get Single Note
   const getSingleNote = async (note) => {
     setFormData({ title: note.title, message: note.message });
     setShowForm(true);
     setNoteID(note._id);
+    setIsViewing(false);
     setIsEditing(true);
   };
 
-  // Update a Note
+  // Handle Update a Note
   const updateNote = async (e) => {
     e.preventDefault();
 
@@ -128,16 +131,28 @@ function App() {
     }
   };
 
+  // Handle Delete Data
+  const deleteNote = async (id) => {
+    try {
+      await axios.delete(`${URL}/api/notes/${id}`);
+      // console.log(data);
+      getNotes();
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="App min-h-screen">
       <Navbar />
       <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-20 py-32">
         <ToastContainer />
         {isLoading === true ? (
-          <div class="fixed flex h-96 items-center justify-center">
-            <div class="h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-blue-400 ease-linear"></div>
-            <div class="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-yellow-400 ease-linear"></div>
-            <div class="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-red-400 ease-linear"></div>
+          <div className="fixed flex h-96 items-center justify-center">
+            <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-blue-400 ease-linear"></div>
+            <div className="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-yellow-400 ease-linear"></div>
+            <div className="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-red-400 ease-linear"></div>
           </div>
         ) : (
           <NoteContainer
@@ -145,6 +160,7 @@ function App() {
             notes={notes}
             deleteNote={deleteNote}
             getSingleNote={getSingleNote}
+            viewNote={viewNote}
           />
         )}
 
@@ -163,8 +179,12 @@ function App() {
         createNote={createNote}
         title={title}
         message={message}
+        isViewing={isViewing}
+        isCreating={isCreating}
         isEditing={isEditing}
         updateNote={updateNote}
+        notes={notes}
+        noteID={noteID}
       />
     </div>
   );

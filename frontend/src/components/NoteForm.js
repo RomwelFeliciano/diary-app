@@ -8,7 +8,9 @@ const NoteForm = ({
 }) => {
   return (
     <div className="flex h-full w-[500px] flex-col items-start justify-center">
-      <h1 className="mb-3 text-2xl font-bold">Create my Diary</h1>
+      <h1 className="mb-3 text-2xl font-bold">
+        {isEditing ? "Update my Diary" : "Create my Diary"}
+      </h1>
       <form
         className="flex w-full flex-col gap-4"
         onSubmit={isEditing ? updateNote : createNote}

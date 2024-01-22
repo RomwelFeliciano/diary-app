@@ -1,6 +1,6 @@
 import { MdPreview, MdOutlineEditNote, MdDelete } from "react-icons/md";
 
-const NoteItem = ({ note, deleteNote, getSingleNote }) => {
+const NoteItem = ({ note, viewNote, deleteNote, getSingleNote }) => {
   let message = note.message;
   let date = new Date(note.createdAt);
   let time = date.toLocaleTimeString();
@@ -31,7 +31,10 @@ const NoteItem = ({ note, deleteNote, getSingleNote }) => {
         </p>
       </div>
       <div className="flex h-auto items-center justify-evenly">
-        <button className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-400 py-1 text-2xl font-semibold text-black transition-all duration-150 ease-in-out hover:bg-blue-500">
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-400 py-1 text-2xl font-semibold text-black transition-all duration-150 ease-in-out hover:bg-blue-500"
+          onClick={() => viewNote(note)}
+        >
           <MdPreview />
         </button>
         <button

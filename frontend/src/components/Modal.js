@@ -1,3 +1,4 @@
+import NoteDetails from "./NoteDetails";
 import NoteForm from "./NoteForm";
 
 const Modal = ({
@@ -7,8 +8,12 @@ const Modal = ({
   createNote,
   title,
   message,
+  isViewing,
+  isCreating,
   isEditing,
   updateNote,
+  notes,
+  noteID,
 }) => {
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -31,14 +36,18 @@ const Modal = ({
             </button>
             <div className="-mt-2">
               {/* Your modal content goes here */}
-              <NoteForm
-                handleInputChange={handleInputChange}
-                createNote={createNote}
-                title={title}
-                message={message}
-                isEditing={isEditing}
-                updateNote={updateNote}
-              />
+
+              {(isCreating || isEditing) && (
+                <NoteForm
+                  handleInputChange={handleInputChange}
+                  createNote={createNote}
+                  title={title}
+                  message={message}
+                  isEditing={isEditing}
+                  updateNote={updateNote}
+                />
+              )}
+              {isViewing && <NoteDetails notes={notes} noteID={noteID} />}
             </div>
           </div>
         </div>
