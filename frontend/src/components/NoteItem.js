@@ -1,6 +1,6 @@
-import React from "react";
+import { MdPreview, MdOutlineEditNote, MdDelete } from "react-icons/md";
 
-const NoteItem = ({ note }) => {
+const NoteItem = ({ note, deleteNote, getSingleNote }) => {
   let message = note.message;
   let date = new Date(note.createdAt);
   let time = date.toLocaleTimeString();
@@ -31,14 +31,20 @@ const NoteItem = ({ note }) => {
         </p>
       </div>
       <div className="flex h-auto items-center justify-evenly">
-        <button className="w-24 rounded-lg bg-sky-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-sky-600">
-          View
+        <button className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-400 py-1 text-2xl font-semibold text-black transition-all duration-150 ease-in-out hover:bg-blue-500">
+          <MdPreview />
         </button>
-        <button className="w-24 rounded-lg bg-green-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-green-600">
-          Edit
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-400 py-1 text-2xl font-semibold text-black transition-all duration-150 ease-in-out hover:bg-yellow-500"
+          onClick={() => getSingleNote(note)}
+        >
+          <MdOutlineEditNote />
         </button>
-        <button className="w-24 rounded-lg bg-red-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-red-600">
-          Delete
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-red-400 py-1 text-2xl font-semibold text-black transition-all duration-150 ease-in-out hover:bg-red-500"
+          onClick={() => deleteNote(note._id)}
+        >
+          <MdDelete />
         </button>
       </div>
     </div>

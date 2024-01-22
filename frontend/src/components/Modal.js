@@ -7,6 +7,8 @@ const Modal = ({
   createNote,
   title,
   message,
+  isEditing,
+  updateNote,
 }) => {
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -34,6 +36,8 @@ const Modal = ({
                 createNote={createNote}
                 title={title}
                 message={message}
+                isEditing={isEditing}
+                updateNote={updateNote}
               />
             </div>
           </div>

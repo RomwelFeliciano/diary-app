@@ -1,8 +1,18 @@
-const NoteForm = ({ title, message, createNote, handleInputChange }) => {
+const NoteForm = ({
+  title,
+  message,
+  createNote,
+  handleInputChange,
+  isEditing,
+  updateNote,
+}) => {
   return (
     <div className="flex h-full w-[500px] flex-col items-start justify-center">
       <h1 className="mb-3 text-2xl font-bold">Create my Diary</h1>
-      <form className="flex w-full flex-col gap-4" onSubmit={createNote}>
+      <form
+        className="flex w-full flex-col gap-4"
+        onSubmit={isEditing ? updateNote : createNote}
+      >
         <div className="flex w-full flex-col">
           <label className="mb-1 text-base font-semibold">Title:</label>
           <input
@@ -26,7 +36,7 @@ const NoteForm = ({ title, message, createNote, handleInputChange }) => {
           />
         </div>
         <button className="rounded-lg bg-neutral-800 py-2 text-white transition-all duration-300 ease-in-out hover:bg-neutral-900">
-          Create
+          {isEditing ? "Update" : "Create"}
         </button>
       </form>
     </div>
