@@ -1,6 +1,13 @@
 import NoteForm from "./NoteForm";
 
-const Modal = ({ showForm, handleCloseForm }) => {
+const Modal = ({
+  showForm,
+  handleCloseForm,
+  handleInputChange,
+  createNote,
+  title,
+  message,
+}) => {
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       handleCloseForm();
@@ -22,7 +29,12 @@ const Modal = ({ showForm, handleCloseForm }) => {
             </button>
             <div className="-mt-2">
               {/* Your modal content goes here */}
-              <NoteForm />
+              <NoteForm
+                handleInputChange={handleInputChange}
+                createNote={createNote}
+                title={title}
+                message={message}
+              />
             </div>
           </div>
         </div>

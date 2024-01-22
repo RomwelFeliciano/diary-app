@@ -1,22 +1,46 @@
 import React from "react";
 
-const NoteItem = () => {
+const NoteItem = ({ note }) => {
+  let message = note.message;
+  let date = new Date(note.createdAt);
+  let time = date.toLocaleTimeString();
+
+  let thumbMessage = message.substring(0, 480);
+  let templateDate = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  }).format(date);
+
   return (
-    <div className="h-96 w-96 rounded-lg bg-green-300 p-4">
-      <div className="flex items-center justify-between pb-3">
-        <h1 className="text-lg font-bold">Today's Weather</h1>
-        <h2 className="text-md font-bold">January 19, 2024</h2>
+    <div className="flex h-96 w-96 flex-col justify-between rounded-lg bg-green-300 p-4">
+      <div className="flex h-auto items-center justify-between pb-3">
+        <h1 className="text-lg font-bold">{note.title}</h1>
+        <div className="flex flex-col items-start justify-center">
+          <h2 className="text-md font-bold">{templateDate}</h2>
+          <span className="text-xs tracking-wider text-neutral-800">
+            {time}
+          </span>
+        </div>
       </div>
-      <hr className="mb-3 border-neutral-900" />
-      <p className="text-justify text-sm leading-6 tracking-wide">
-        &nbsp;&nbsp;&nbsp;&nbsp; If you’re hungry for joy and low on creativity,
-        these short inspiring messages are for you. If you know you need more
-        support... like, daily... get my book Morning Affirmations for 200
-        phrases that'll start your day with intention and gratitude. So you can
-        live your life. Then get my book Sleep Affirmations for 200 more phrases
-        to help you think better thoughts before bedtime, so you can get the
-        rest you need to rise, shine, and make it through anything.
-      </p>
+      <div className="h-full">
+        <hr className="mb-3 border-neutral-900" />
+        <p className="text-justify text-sm leading-6 tracking-wide">
+          &nbsp;&nbsp;&nbsp;&nbsp;{thumbMessage}
+          {thumbMessage.length >= 480 ? "..." : ""}
+        </p>
+      </div>
+      <div className="flex h-auto items-center justify-evenly">
+        <button className="w-24 rounded-lg bg-sky-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-sky-600">
+          View
+        </button>
+        <button className="w-24 rounded-lg bg-green-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-green-600">
+          Edit
+        </button>
+        <button className="w-24 rounded-lg bg-red-500 py-1 font-semibold transition-all duration-150 ease-in-out hover:bg-red-600">
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
