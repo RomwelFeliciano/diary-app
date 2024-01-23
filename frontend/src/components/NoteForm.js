@@ -1,11 +1,15 @@
-const NoteForm = ({
-  title,
-  message,
-  createNote,
-  handleInputChange,
-  isEditing,
-  updateNote,
-}) => {
+import { useContext } from "react";
+import { formContext } from "../context/FormContext";
+
+const NoteForm = () => {
+  const {
+    handleInputChange,
+    createNote,
+    updateNote,
+    isEditing,
+    title,
+    message,
+  } = useContext(formContext);
   return (
     <div className="flex h-full w-[500px] flex-col items-start justify-center">
       <h1 className="mb-3 text-2xl font-bold">

@@ -1,6 +1,9 @@
-import React from "react";
+import { useContext } from "react";
+import { formContext } from "../context/FormContext";
 
-const NoteDetails = ({ notes, noteID }) => {
+const NoteDetails = () => {
+  const { notes, noteID } = useContext(formContext);
+
   const details = notes.find((note) => note._id === noteID);
 
   console.log(details);

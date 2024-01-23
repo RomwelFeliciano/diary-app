@@ -1,20 +1,12 @@
+import { useContext } from "react";
 import NoteDetails from "./NoteDetails";
 import NoteForm from "./NoteForm";
+import { formContext } from "../context/FormContext";
 
-const Modal = ({
-  showForm,
-  handleCloseForm,
-  handleInputChange,
-  createNote,
-  title,
-  message,
-  isViewing,
-  isCreating,
-  isEditing,
-  updateNote,
-  notes,
-  noteID,
-}) => {
+const Modal = () => {
+  const { showForm, handleCloseForm, isCreating, isViewing, isEditing } =
+    useContext(formContext);
+
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       handleCloseForm();
@@ -37,17 +29,8 @@ const Modal = ({
             <div className="-mt-2">
               {/* Your modal content goes here */}
 
-              {(isCreating || isEditing) && (
-                <NoteForm
-                  handleInputChange={handleInputChange}
-                  createNote={createNote}
-                  title={title}
-                  message={message}
-                  isEditing={isEditing}
-                  updateNote={updateNote}
-                />
-              )}
-              {isViewing && <NoteDetails notes={notes} noteID={noteID} />}
+              {(isCreating || isEditing) && <NoteForm />}
+              {isViewing && <NoteDetails />}
             </div>
           </div>
         </div>

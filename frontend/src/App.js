@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Modal from "./components/Modal";
+import { formContext } from "./context/FormContext";
 
 export const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -49,7 +50,6 @@ function App() {
   const createNote = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
     if (title === "" || message === "") {
       return toast.error("Please add a title and message to the input");
     }
@@ -64,7 +64,6 @@ function App() {
       getNotes();
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
     }
   };
 
@@ -73,14 +72,12 @@ function App() {
     setIsLoading(true);
     try {
       const { data } = await axios.get(`${URL}/api/notes`);
-      // console.log(data);
       setNotes(data);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -135,12 +132,10 @@ function App() {
   const deleteNote = async (id) => {
     try {
       await axios.delete(`${URL}/api/notes/${id}`);
-      // console.log(data);
       getNotes();
-      toast.warn("Note has been Deleted");
+      toast.warn("Diary has been Deleted");
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
     }
   };
 
@@ -173,20 +168,24 @@ function App() {
         </button>
       </main>
       {/* Modal */}
-      <Modal
-        showForm={showForm}
-        handleCloseForm={handleCloseForm}
-        handleInputChange={handleInputChange}
-        createNote={createNote}
-        title={title}
-        message={message}
-        isViewing={isViewing}
-        isCreating={isCreating}
-        isEditing={isEditing}
-        updateNote={updateNote}
-        notes={notes}
-        noteID={noteID}
-      />
+      <formContext.Provider
+        value={{
+          showForm,
+          handleCloseForm,
+          handleInputChange,
+          createNote,
+          updateNote,
+          isCreating,
+          isViewing,
+          isEditing,
+          title,
+          message,
+          notes,
+          noteID,
+        }}
+      >
+        <Modal />
+      </formContext.Provider>
     </div>
   );
 }
