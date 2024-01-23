@@ -2,6 +2,7 @@ const dotenv = require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const notesRoute = require("./routes/notesRoute");
+const userRoute = require("./routes/userRoute");
 const cors = require("cors");
 
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/notes", notesRoute);
+app.use("/api/user", userRoute);
 
 // Routes
 app.get("/", (req, res) => {

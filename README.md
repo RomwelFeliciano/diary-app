@@ -10,6 +10,9 @@
   (require("dotenv").config();)
 - npm i mongodb
 - npm i mongoose
+- npm i bcrypt
+- npm i validator
+- npm i jsonwebtoken
 
 # FRONTEND
 

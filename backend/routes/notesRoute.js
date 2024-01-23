@@ -1,5 +1,4 @@
 const express = require("express");
-const Notes = require("../models/notesModel");
 const {
   createNote,
   getAllNotes,
