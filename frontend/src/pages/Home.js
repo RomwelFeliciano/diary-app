@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Modal from "../components/Modal";
 import { formContext } from "../context/FormContext";
+import { noteContext } from "../context/NoteContext";
 
 export const URL = process.env.REACT_APP_SERVER_URL;
 
@@ -148,13 +149,11 @@ const Home = () => {
           <div className="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-red-400 ease-linear"></div>
         </div>
       ) : (
-        <NoteContainer
-          isLoading={isLoading}
-          notes={notes}
-          deleteNote={deleteNote}
-          getSingleNote={getSingleNote}
-          viewNote={viewNote}
-        />
+        <noteContext.Provider
+          value={{ isLoading, viewNote, getSingleNote, deleteNote, notes }}
+        >
+          <NoteContainer />
+        </noteContext.Provider>
       )}
 
       <button

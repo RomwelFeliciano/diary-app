@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { noteContext } from "../context/NoteContext";
 import { MdPreview, MdOutlineEditNote, MdDelete } from "react-icons/md";
 
-const NoteItem = ({ note, viewNote, deleteNote, getSingleNote }) => {
+const NoteItem = ({ note }) => {
+  const { viewNote, deleteNote, getSingleNote } = useContext(noteContext);
+
   let message = note.message;
   let date = new Date(note.createdAt);
   let time = date.toLocaleTimeString();
