@@ -34,7 +34,7 @@ const NoteForm = () => {
           <label className="mb-1 text-base font-semibold">Message:</label>
           <textarea
             rows={8}
-            className="rounded-lg p-2"
+            className="resize-none rounded-lg p-2"
             name="message"
             onChange={handleInputChange}
             value={message}
