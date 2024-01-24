@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NoteContainer from "../components/NoteContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,10 +6,14 @@ import axios from "axios";
 import Modal from "../components/Modal";
 import { formContext } from "../context/FormContext";
 import { noteContext } from "../context/NoteContext";
+import Loading from "../components/Loading";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export const URL = process.env.REACT_APP_SERVER_URL;
 
 const Home = () => {
+  const { user } = useAuthContext();
+
   const [showForm, setShowForm] = useState(false);
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,12 +54,19 @@ const Home = () => {
   const createNote = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      toast.error("You must be logged in");
+      return;
+    }
+
     if (title === "" || message === "") {
       return toast.error("Please add a title and message to the input");
     }
     try {
       //Axios
-      await axios.post(`${URL}/api/notes`, formData);
+      await axios.post(`${URL}/api/notes`, formData, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       toast.success("Diary has been created");
       setFormData({ title: "", message: "" });
       setShowForm(false);
@@ -71,7 +82,11 @@ const Home = () => {
   const getNotes = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(`${URL}/api/notes`);
+      const { data } = await axios.get(`${URL}/api/notes`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       setNotes(data);
       setTimeout(() => {
         setIsLoading(false);
@@ -85,9 +100,13 @@ const Home = () => {
   };
 
   // Re-render when there are notes
+  const getNotesRef = useRef(getNotes);
+
   useEffect(() => {
-    getNotes();
-  }, []);
+    if (user) {
+      getNotesRef.current();
+    }
+  }, [user, getNotesRef]);
 
   // Handle View Note
   const viewNote = async (note) => {
@@ -117,7 +136,9 @@ const Home = () => {
     }
 
     try {
-      await axios.put(`${URL}/api/notes/${noteID}`, formData);
+      await axios.put(`${URL}/api/notes/${noteID}`, formData, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       setFormData({ title: "", message: "" });
       setIsEditing(false);
       setShowForm(false);
@@ -130,8 +151,14 @@ const Home = () => {
 
   // Handle Delete Data
   const deleteNote = async (id) => {
+    if (!user) {
+      toast.error("You must be logged in");
+      return;
+    }
     try {
-      await axios.delete(`${URL}/api/notes/${id}`);
+      await axios.delete(`${URL}/api/notes/${id}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       getNotes();
       toast.warn("Diary has been Deleted");
     } catch (error) {
@@ -143,11 +170,7 @@ const Home = () => {
     <>
       <ToastContainer position="top-center" autoClose={3000} />
       {isLoading === true ? (
-        <div className="fixed flex h-96 items-center justify-center">
-          <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-blue-400 ease-linear"></div>
-          <div className="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-yellow-400 ease-linear"></div>
-          <div className="ml-3 h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-red-400 ease-linear"></div>
-        </div>
+        <Loading />
       ) : (
         <noteContext.Provider
           value={{ isLoading, viewNote, getSingleNote, deleteNote, notes }}
