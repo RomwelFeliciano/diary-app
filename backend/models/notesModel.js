@@ -10,6 +10,10 @@ const notesSchema = mongoose.Schema(
       type: String,
       required: [true, "Cannot leave empty"],
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

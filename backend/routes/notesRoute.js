@@ -1,4 +1,5 @@
 const express = require("express");
+const requireAuth = require("../middleware/requireAuth");
 const {
   createNote,
   getAllNotes,
@@ -8,6 +9,9 @@ const {
 } = require("../controllers/notesController");
 
 const router = express.Router();
+
+// Require Auth for all note routes
+router.use(requireAuth);
 
 // Create a Note
 router.post("/", createNote);

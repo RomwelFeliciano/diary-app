@@ -3,7 +3,9 @@ const Notes = require("../models/notesModel");
 // Create a Note
 const createNote = async (req, res) => {
   try {
-    const note = await Notes.create(req.body);
+    const user_id = req.user._id;
+
+    const note = await Notes.create({ ...req.body, user_id });
     res.status(200).json(note);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -16,7 +18,9 @@ const createNote = async (req, res) => {
 // Get All Note
 const getAllNotes = async (req, res) => {
   try {
-    const notes = await Notes.find().sort({ createdAt: -1 });
+    const user_id = req.user._id;
+
+    const notes = await Notes.find({ user_id }).sort({ createdAt: -1 });
     res.status(200).json(notes);
   } catch (error) {
     res.status(500).json({ msg: error.message });
