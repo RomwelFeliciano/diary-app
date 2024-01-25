@@ -24,7 +24,7 @@ const Login = () => {
         <Loading />
       ) : (
         <form
-          className="relative flex h-[320px] w-[500px] flex-col items-start justify-between rounded-lg bg-neutral-200 p-4"
+          className="relative flex h-[320px] w-full flex-col items-start justify-between rounded-lg bg-neutral-200 p-4 md:w-[500px]"
           onSubmit={handleSubmit}
         >
           <h1 className="text-3xl font-bold">Login</h1>

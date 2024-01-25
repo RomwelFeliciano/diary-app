@@ -11,19 +11,19 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 z-10 flex h-24 w-full items-center justify-between bg-neutral-900 px-20 text-white">
+    <header className="fixed top-0 z-10 flex h-24 w-full flex-col items-center justify-center gap-2 bg-neutral-900 px-5 text-white md:flex-row md:justify-between md:gap-0 md:px-20">
       <Link to="/">
-        <h2 className="text-2xl font-bold">My Diary</h2>
+        <h2 className="text-xl font-bold md:text-2xl">My Diary</h2>
       </Link>
-      <nav className="flex items-center gap-10">
+      <nav className="flex w-full items-center justify-between gap-2 md:w-auto md:justify-center md:gap-10">
         {user && (
           <>
-            <h2 className="text-xl ">
+            <h2 className="text-base md:text-xl">
               Hello,
               <span className="font-bold text-green-400"> {user.email}</span>
             </h2>
             <button
-              className="rounded-lg border-2 border-green-400 px-4 py-1 text-lg transition-all duration-300 ease-in-out hover:bg-green-400 hover:text-black"
+              className="rounded-lg border-2 border-green-400 px-4 py-1 text-base transition-all duration-300 ease-in-out hover:bg-green-400 hover:text-black md:text-lg"
               onClick={handleLogout}
             >
               Logout
@@ -31,7 +31,7 @@ const Navbar = () => {
           </>
         )}
         {!user && (
-          <div className="flex items-center gap-4">
+          <div className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-start">
             <Link to={"/login"}>
               <h2 className="text-xl font-semibold transition-all duration-200 ease-in-out hover:text-green-400 hover:underline hover:underline-offset-8">
                 Login

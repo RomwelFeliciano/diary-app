@@ -17,19 +17,21 @@ const NoteItem = ({ note }) => {
   }).format(date);
 
   return (
-    <div className="flex h-96 w-96 flex-col justify-between rounded-lg bg-green-300 p-4">
-      <div className="flex h-auto items-center justify-between pb-3">
-        <h1 className="text-lg font-bold">{note.title}</h1>
+    <div className="flex h-[500px] w-96 flex-col justify-between rounded-lg bg-green-300 p-4 md:h-[450px] xl:h-[420px]">
+      <div className="flex h-auto flex-col justify-between gap-2 pb-3 md:flex-row md:items-center md:gap-0">
+        <h1 className="w-auto text-center text-lg font-bold lg:w-3/5 lg:text-left">
+          {note.title}
+        </h1>
         <div className="flex flex-col items-start justify-center">
-          <h2 className="text-md font-bold">{templateDate}</h2>
-          <span className="text-xs tracking-wider text-neutral-800">
+          <h2 className="text-xs font-semibold md:text-base">{templateDate}</h2>
+          <span className="text-[10px] tracking-wider text-neutral-800 md:text-xs">
             {time}
           </span>
         </div>
       </div>
       <div className="h-full">
         <hr className="mb-3 border-neutral-900" />
-        <p className="text-justify text-sm leading-6 tracking-wide">
+        <p className="h-full text-justify text-sm leading-6 tracking-wide">
           &nbsp;&nbsp;&nbsp;&nbsp;{thumbMessage}
           {thumbMessage.length >= 480 ? "..." : ""}
         </p>

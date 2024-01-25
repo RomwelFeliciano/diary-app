@@ -11,7 +11,7 @@ const NoteForm = () => {
     message,
   } = useContext(formContext);
   return (
-    <div className="flex h-full w-[500px] flex-col items-start justify-center">
+    <div className="flex h-full w-full flex-col items-start justify-center md:w-[500px]">
       <h1 className="mb-3 text-2xl font-bold">
         {isEditing ? "Update my Diary" : "Create my Diary"}
       </h1>

@@ -16,10 +16,10 @@ const NoteDetails = () => {
   }).format(date);
 
   return (
-    <div className="flex h-[500px] w-[800px] flex-col items-start justify-start p-5">
+    <div className="flex h-[500px] w-auto flex-col items-start justify-start pt-2 md:w-[800px] md:p-4">
       {details && (
         <div className="flex h-full w-full flex-col items-start justify-start">
-          <div className="flex w-full justify-between gap-4">
+          <div className="flex w-full flex-col justify-between gap-2 md:flex-row md:gap-4">
             <div className="flex h-full w-full flex-col gap-2">
               <label className="font-semibold">Title:</label>
               <h2 className="flex h-10 items-center rounded-lg bg-neutral-100 p-4 text-justify">
@@ -36,7 +36,7 @@ const NoteDetails = () => {
           </div>
           <div className="flex h-full w-full flex-col gap-2 pt-2">
             <label className="font-semibold">Message:</label>
-            <p className="h-full w-full rounded-lg bg-neutral-100 p-4 text-justify">
+            <p className="h-72 w-full overflow-y-scroll rounded-lg bg-neutral-100 p-4 text-justify md:h-full md:overflow-hidden">
               &nbsp;&nbsp;&nbsp;&nbsp;{details.message}
             </p>
           </div>

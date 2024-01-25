@@ -13,7 +13,7 @@ const App = () => {
     <div className="App min-h-screen">
       <BrowserRouter>
         <Navbar />
-        <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-20 py-32">
+        <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-4 py-32 md:px-20">
           <Routes>
             <Route
               path="/"
