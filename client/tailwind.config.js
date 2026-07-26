@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -15,17 +16,20 @@ module.exports = {
         ],
       },
       colors: {
+        // Vue.js green (#42b883) as the primary brand shade, extended into a
+        // full dark-green scale (nods to Nuxt's green identity too).
         brand: {
-          50: "#ecfdf5",
-          100: "#d1fae5",
-          200: "#a7f3d0",
-          300: "#6ee7b7",
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065f46",
-          900: "#064e3b",
+          50: "#eefaf4",
+          100: "#d3f2e3",
+          200: "#a8e4c8",
+          300: "#75d1a8",
+          400: "#4dbd8d",
+          500: "#42b883",
+          600: "#339a6d",
+          700: "#277a57",
+          800: "#1f5f45",
+          900: "#16402f",
+          950: "#0c2a1f",
         },
       },
       boxShadow: {

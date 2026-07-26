@@ -8,11 +8,13 @@ import ConfirmDialog from "../components/ConfirmDialog";
 import { NoteFormContext } from "../context/NoteFormContext";
 import { NoteContext } from "../context/NoteContext";
 import { useNotes } from "../hooks/useNotes";
+import { useTheme } from "../hooks/useTheme";
 
 const EMPTY_FORM = { title: "", message: "" };
 
 const DiaryPage = () => {
   const { notes, isLoading, addNote, editNote, removeNote } = useNotes();
+  const { theme } = useTheme();
 
   const [showForm, setShowForm] = useState(false);
   const [isViewing, setIsViewing] = useState(false);
@@ -128,7 +130,7 @@ const DiaryPage = () => {
 
   return (
     <>
-      <ToastContainer position="top-center" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={3000} theme={theme} />
 
       <div className="w-full max-w-6xl">
         <NoteContext.Provider

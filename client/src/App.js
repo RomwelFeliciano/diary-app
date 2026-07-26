@@ -10,7 +10,7 @@ const App = () => {
   const { user } = useAuth();
 
   return (
-    <div className="App min-h-screen bg-slate-50">
+    <div className="App min-h-screen bg-slate-50 dark:bg-slate-900">
       <BrowserRouter>
         <Navbar />
         <main className="relative flex h-full min-h-screen w-full flex-col items-center justify-start px-4 pb-16 pt-24 md:px-10 md:pt-28">

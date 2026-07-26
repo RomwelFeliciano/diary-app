@@ -29,19 +29,19 @@ const NoteModal = () => {
       aria-labelledby="note-modal-title"
     >
       <div
-        className={`flex max-h-[90vh] w-full flex-col overflow-hidden rounded-2xl bg-white shadow-soft animate-modal-in ${
+        className={`flex max-h-[90vh] w-full flex-col overflow-hidden rounded-2xl bg-white shadow-soft animate-modal-in dark:bg-slate-800 ${
           isViewing ? "max-w-2xl" : "max-w-lg"
         }`}
       >
-        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4 dark:border-slate-700">
           <h2
             id="note-modal-title"
-            className="text-lg font-semibold text-slate-900"
+            className="text-lg font-semibold text-slate-900 dark:text-slate-100"
           >
             {title}
           </h2>
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-slate-300"
             onClick={handleCloseForm}
             aria-label="Close"
           >

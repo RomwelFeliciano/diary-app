@@ -22,10 +22,12 @@ const LoginPage = () => {
         <MdMenuBook className="h-6 w-6" />
       </span>
 
-      <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
+      <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8 dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Welcome back
+          </h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Log in to continue your diary.
           </p>
         </div>
@@ -34,18 +36,18 @@ const LoginPage = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="login-email"
-              className="text-sm font-medium text-slate-700"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Email
             </label>
             <div className="relative">
-              <MdOutlineEmail className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+              <MdOutlineEmail className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
               <input
                 id="login-email"
                 type="email"
                 autoComplete="email"
                 placeholder="you@example.com"
-                className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+                className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-500 dark:focus:ring-brand-900/40"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
@@ -55,24 +57,24 @@ const LoginPage = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="login-password"
-              className="text-sm font-medium text-slate-700"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Password
             </label>
             <div className="relative">
-              <MdLockOutline className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+              <MdLockOutline className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
               <input
                 id="login-password"
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 placeholder="Enter your password"
-                className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-10 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+                className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-500 dark:focus:ring-brand-900/40"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
                 onClick={() => setShowPassword((prev) => !prev)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 tabIndex={-1}
@@ -87,7 +89,7 @@ const LoginPage = () => {
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm font-medium text-red-600">
+            <div className="rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm font-medium text-red-600 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400">
               {error}
             </div>
           )}
@@ -101,11 +103,11 @@ const LoginPage = () => {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            className="font-medium text-brand-600 hover:underline"
+            className="font-medium text-brand-600 hover:underline dark:text-brand-400"
           >
             Register
           </Link>

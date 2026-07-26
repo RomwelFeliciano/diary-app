@@ -21,14 +21,14 @@ const NoteForm = () => {
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="note-title"
-          className="text-sm font-medium text-slate-700"
+          className="text-sm font-medium text-slate-700 dark:text-slate-300"
         >
           Title
         </label>
         <input
           id="note-title"
           type="text"
-          className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+          className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-500 dark:focus:ring-brand-900/40"
           name="title"
           onChange={handleInputChange}
           value={title}
@@ -39,14 +39,14 @@ const NoteForm = () => {
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="note-message"
-          className="text-sm font-medium text-slate-700"
+          className="text-sm font-medium text-slate-700 dark:text-slate-300"
         >
           Message
         </label>
         <textarea
           id="note-message"
           rows={8}
-          className="resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+          className="resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors focus:border-brand-400 focus:ring-4 focus:ring-brand-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-500 dark:focus:ring-brand-900/40"
           name="message"
           onChange={handleInputChange}
           value={message}

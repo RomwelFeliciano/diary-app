@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-900 dark:text-slate-100;
   font-family:
     "Inter",
     -apple-system,
@@ -26,6 +26,10 @@ code {
   @apply bg-brand-200 text-brand-900;
 }
 
+.dark ::selection {
+  @apply bg-brand-800 text-brand-50;
+}
+
 /* Thin, unobtrusive scrollbar for scrollable panels (note message, etc.) */
 .scrollbar-thin {
   scrollbar-width: thin;
@@ -39,4 +43,12 @@ code {
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background-color: rgb(203 213 225);
   border-radius: 9999px;
+}
+
+.dark .scrollbar-thin {
+  scrollbar-color: rgb(71 85 105) transparent;
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgb(71 85 105);
 }

@@ -13,25 +13,27 @@ const NoteCard = ({ note }) => {
   const { date, time } = formatNoteDate(note.createdAt);
 
   return (
-    <div className="flex h-64 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover">
+    <div className="flex h-64 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover dark:border-slate-700 dark:bg-slate-800 dark:shadow-none dark:hover:border-slate-600">
       <div className="min-h-0 flex-1">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="line-clamp-1 text-base font-semibold text-slate-900">
+          <h3 className="line-clamp-1 text-base font-semibold text-slate-900 dark:text-slate-100">
             {note.title}
           </h3>
-          <span className="shrink-0 text-xs font-medium text-slate-400">
+          <span className="shrink-0 text-xs font-medium text-slate-400 dark:text-slate-500">
             {date}
           </span>
         </div>
-        <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-slate-500">
+        <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
           {note.message}
         </p>
       </div>
-      <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
-        <span className="text-xs text-slate-400">{time}</span>
+      <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-700">
+        <span className="text-xs text-slate-400 dark:text-slate-500">
+          {time}
+        </span>
         <div className="flex items-center gap-1">
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-500"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-500 dark:text-slate-500 dark:hover:bg-blue-950/40 dark:hover:text-blue-400"
             onClick={() => viewNote(note)}
             aria-label="View note"
             title="View"
@@ -39,7 +41,7 @@ const NoteCard = ({ note }) => {
             <MdOutlineRemoveRedEye className="h-[18px] w-[18px]" />
           </button>
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-amber-50 hover:text-amber-500"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-amber-50 hover:text-amber-500 dark:text-slate-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-400"
             onClick={() => startEditNote(note)}
             aria-label="Edit note"
             title="Edit"
@@ -47,7 +49,7 @@ const NoteCard = ({ note }) => {
             <MdOutlineEditNote className="h-[18px] w-[18px]" />
           </button>
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-red-50 hover:text-red-500"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-red-50 hover:text-red-500 dark:text-slate-500 dark:hover:bg-red-950/40 dark:hover:text-red-400"
             onClick={() => requestDeleteNote(note)}
             aria-label="Delete note"
             title="Delete"
