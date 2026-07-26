@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { NoteFormContext } from "../context/NoteFormContext";
+import Spinner from "./Spinner";
 
 const NoteForm = () => {
   const {
@@ -7,6 +8,7 @@ const NoteForm = () => {
     handleCreateSubmit,
     handleUpdateSubmit,
     isEditing,
+    isSubmitting,
     title,
     message,
   } = useContext(NoteFormContext);
@@ -51,8 +53,18 @@ const NoteForm = () => {
           placeholder="Write what's on your mind..."
         />
       </div>
-      <button className="mt-2 rounded-lg bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600">
-        {isEditing ? "Save changes" : "Create entry"}
+      <button
+        className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-brand-500 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
+        disabled={isSubmitting}
+      >
+        {isSubmitting && <Spinner className="h-4 w-4" />}
+        {isSubmitting
+          ? isEditing
+            ? "Updating..."
+            : "Adding..."
+          : isEditing
+            ? "Save changes"
+            : "Create entry"}
       </button>
     </form>
   );

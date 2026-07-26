@@ -24,6 +24,7 @@ const DiaryPage = () => {
 
   const [pendingDeleteNote, setPendingDeleteNote] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleShowForm = () => {
     setShowForm(true);
@@ -32,6 +33,7 @@ const DiaryPage = () => {
   };
 
   const handleCloseForm = () => {
+    if (isSubmitting) return;
     setShowForm(false);
     setFormData(EMPTY_FORM);
     setIsEditing(false);
@@ -66,6 +68,7 @@ const DiaryPage = () => {
       return toast.error("Please add a title and message to the input");
     }
 
+    setIsSubmitting(true);
     try {
       await addNote(formData);
       toast.success("Diary has been created");
@@ -73,6 +76,8 @@ const DiaryPage = () => {
       setShowForm(false);
     } catch (error) {
       toast.error(error.response?.data?.msg || error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -83,6 +88,7 @@ const DiaryPage = () => {
       return toast.error("Please add a title and message to the input");
     }
 
+    setIsSubmitting(true);
     try {
       await editNote(noteID, formData);
       toast.success("Note updated successfully");
@@ -91,6 +97,8 @@ const DiaryPage = () => {
       setShowForm(false);
     } catch (error) {
       toast.error(error.response?.data?.msg || error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -149,6 +157,7 @@ const DiaryPage = () => {
           isCreating,
           isViewing,
           isEditing,
+          isSubmitting,
           title,
           message,
           notes,
