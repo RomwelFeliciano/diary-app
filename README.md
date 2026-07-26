@@ -57,7 +57,7 @@ cp client/.env.example client/.env.local
 
 | Variable         | Description                                      |
 | ---------------- | ------------------------------------------------- |
-| `PORT`           | Port the API listens on (default `5000`)           |
+| `PORT`           | Port the API listens on (default `5001`)           |
 | `MONGO_URI`      | MongoDB connection string                          |
 | `JWT_SECRET`     | Secret used to sign JWTs                           |
 | `JWT_EXPIRES_IN` | Token lifetime (default `3d`)                      |
@@ -71,8 +71,14 @@ cp client/.env.example client/.env.local
 | `REACT_APP_API_URL`   | Base URL of the running server API    |
 
 A `server/.env.local` with a working local-dev secret and `client/.env.local`
-pointing at `http://localhost:5000` are already included for convenience —
+pointing at `http://localhost:5001` are already included for convenience —
 just replace `MONGO_URI` with your own MongoDB connection string.
+
+> **macOS note:** port `5000` is claimed by Control Center's AirPlay Receiver,
+> which will silently answer HTTP requests instead of your server and show up
+> as a confusing CORS/403 error in the browser. That's why the default here is
+> `5001` instead — either keep using a non-5000 port, or disable AirPlay
+> Receiver under System Settings > General > AirDrop & Handoff.
 
 ### 3. Run the app in development
 
